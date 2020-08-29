@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('dashboardAssets/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link href="{{ asset('dashboardAssets/vendor/fonts/circular-std/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('dashboardAssets/libs/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboardAssets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
+    <link rel="stylesheet" href="'{{ asset('dashboardAssets/vendor/charts/chartist-bundle/chartist.css') }}'">
+    <link rel="stylesheet" href="{{ asset('dashboardAssets/vendor/charts/morris-bundle/morris.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('dashboardAssets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="'{{ asset('dashboardAssets/vendor/charts/c3charts/c3.css') }}'">
+    <link rel="stylesheet" href="{{ asset('dashboardAssets/vendor/fonts/flag-icon-css/flag-icon.min.css') }}">
+    <title>@yield('title', 'Traders Income Global')</title>
+</head>
+
+<body>
+
+    @yield('content')
+</body>
+
+</html>
