@@ -29,18 +29,15 @@
                      </div>
                  </div>
              @endforeach
-             <div class="container"> {{ $withdrawals->links() }}
-             </div>
-
+             <div class="container"> {{ $withdrawals->links() }}</div>
          @else
-             <div class="jumbotron text-center">
-                 <h1>No Referral Yet!</h1>
-                 <h4>Copy your referral link and share with your friends and then get paid after they signed up and start
-                     investing <br> <span class="text-primary">
-                         {{ auth()->user()->referral_link() }}
-                     </span></h4>
+             <div class="jumbotron text-center ml-3">
+                 <h4 class="text-center ">No Withdrawal History <i class="fa fa-history" aria-hidden="true"></i></h4>
              </div>
          @endif
      </div>
-
+     </div>
+     </div>
+     </div>
+     </div>
  @endsection

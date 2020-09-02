@@ -19,9 +19,11 @@
                                                 <b>Joined Date:</b>
                                                 {{ date('d:m:Y', strtotime($referral->created_at)) }}<br />
                                                 <hr />
-                                                <b>Investment</b>: &#8358; {{ $referral->current_investment }}<br />
+                                                <b>Investment</b>:&#8358;
+                                                {{ number_format($referral->current_investment) }}<br />
                                                 <hr />
-                                                <b>Total Investment</b>: &#8358;{{ $referral->total_amount_invested }}<br />
+                                                <b>Total Investment</b>:
+                                                &#8358;{{ number_format($referral->total_amount_invested) }}<br />
                                                 <hr />
                                             </p>
                                         </div>

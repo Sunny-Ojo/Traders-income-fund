@@ -1,5 +1,5 @@
 @extends('layouts.nav')
-@section('title', 'Make an investment')
+@section('title', 'Make a Recommitment')
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -9,7 +9,7 @@
                         <h4 class="text-center">Recommitment Guides</h4>
                     </div>
                     <div class="card-body">
-                        <h4>Please take note of this <ins class="text-danger ">Instructions</ins> before making a
+                        <h4>Please take note of this <ins class="text-danger ">Instructions</ins> before making
                             Recommitments</h4>
                         <ol>
                             <h5>
@@ -20,7 +20,7 @@
                                 </li>
                             </h5>
                             <h5>
-                                <li>Wait after 3 days to be able to place a withdrawal order on the Recommitment. </li>
+                                <li>Wait after 5 days to be able to place a withdrawal order on the Recommitment. </li>
                             </h5>
                             <h5>
                                 <li>Your Recommitment duration starts counting after the admin has confirmed your
@@ -43,7 +43,7 @@
                             <h4>Account Name: {{ $admin->account_name }}</h4>
                             <h4>Account Number: {{ $admin->account_number }}</h4>
                             <h4>Bank Name: {{ $admin->bank_name }}</h4>
-                            <h4>Phone Number: <a href="tel://08134883991">08134883991</a></h4>
+                            <h4>Phone Number: <a href="tel://{{ $admin->phone }}">{{ $admin->phone }}</a></h4>
                         @endforeach
                         <hr>
                         <form action="{{ route('recommitments.store') }}" method="post" enctype="multipart/form-data">
@@ -64,14 +64,7 @@
                                 <li class="text-danger">{{ $message }}</li>
                                 @enderror
                             </div>
-                            <input type="hidden" name="usyer_id" value="{{ Auth::id() }}">
-                            <div class="form-group">
-                                <input value="{{ old('name_of_sender') }}" type="text" name="name_of_sender" id=""
-                                    class="form-control" placeholder="Your Name on the account">
-                                @error('name_of_sender')
-                                <li class="text-danger">{{ $message }}</li>
-                                @enderror
-                            </div>
+                            <input type="hidden" name="admin" value="{{ $admin->username }}">
                             <div class="form-group">
                                 <input type="submit" value="Upload Proof of Payment" class="btn btn-primary btn-sm">
                             </div>

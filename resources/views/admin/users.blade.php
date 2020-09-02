@@ -2,19 +2,16 @@
 @section('title', ' Registered Users ')
 @section('content')
 
-    <h1 class="h3 mb-2 text-gray-800">All Registered Users of Traders Income Fund</h1>
+    <h3 class="h3 mb-2 text-gray-800">All Registered Users of Traders Income Fund</h3>
     @if (count($users) > 0)
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Registered Users</h6>
             </div>
-
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-
                         <thead>
                             <tr>
                                 <th>Name of User</th>
@@ -34,7 +31,6 @@
                         <tbody>
                             @foreach ($users as $user)
                                 <tr>
-
                                     <td>{{ $user->name }}</td>
                                     <td>
                                         {{ $user->email }}
@@ -42,9 +38,6 @@
                                     <td>
                                         {{ $user->phone }}
                                     </td>
-
-
-
                                     <td><a href="{{ route('showUsers', $user->id) }}" class="btn btn-primary">View
                                         </a></td>
                                 </tr>
@@ -60,4 +53,5 @@
             <h4>No Registered User is available. </h4>
         </div>
     @endif
+    </div>
 @endsection

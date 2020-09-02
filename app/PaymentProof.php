@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\App;
 class PaymentProof extends Model
 {
     protected $fillable = [
-        'image', 'user_id', 'name_of_sender',
+        'image', 'user_id', 'name_of_sender', 'admin'
     ];
     //
     public function user()

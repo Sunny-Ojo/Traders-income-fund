@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone');
             $table->string('account_name');
-            $table->string('account_number')->unique();
+            $table->string('account_number');
             $table->string('bank_name');
             $table->boolean('admin')->default(0);
             $table->string('current_investment')->default(0);
@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('invested_on')->nullable();
             $table->string('withdrawable_amount')->default(0);
             $table->string('total_amount_invested')->default(0);
+            $table->string('lastAdminPaidTo')->nullable();
+            $table->string('adminToApproveActivation')->nullable();
             $table->boolean('made_recommitment')->default(0);
             $table->string('total_amount_withdrawn')->default(0);
             $table->enum('awaiting_approval', ['awaiting', 'not_verified', 'verified', 'declined'])->default('not_verified');

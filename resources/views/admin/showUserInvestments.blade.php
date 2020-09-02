@@ -10,7 +10,6 @@
 
                     <img src="/storage/proofs/investments/{{ $investment->screenshot }}" alt="investment of payment"
                         width="100%">
-
                 </div>
                 <div class="card-footer">
                     @if ($investment->confirmed == 0)
@@ -20,7 +19,6 @@
                             class="btn btn-danger ml-3 float-left">Decline</a>
                     @else
                         <button class="disabled btn btn-primary">It has been approved already</button>
-                    @endif
                     @endif
                 </div>
             </div>

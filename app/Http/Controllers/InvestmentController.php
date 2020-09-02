@@ -40,11 +40,11 @@ class InvestmentController extends Controller
      */
     public function create(Request $request)
     {
-        $adminAccount =  Admin::inRandomOrder()->limit(1)->get();
+        $adminAccount =  User::where('admin', 1)->inRandomOrder()->limit(1)->get();
         if (auth()->user()->times_invested == 0) {
             return view('users.invest')->with('adminAccount', $adminAccount);
         } else {
-            return redirect()->back()->with('error', "sorry, you can not make another investment, rather you can make a recommitment when you want to withdraw your current investment which will be due after 3 days.");
+            return redirect()->back()->with('error', "sorry, you can not make another investment, rather you can make a recommitment when you want to withdraw your current investment which will be due after 5 days.");
         }
     }
 
@@ -73,14 +73,20 @@ class InvestmentController extends Controller
             $saveImage = $request->file('proof')->storeAs('public/proofs/investments', $imgTodb);
         }
         $withdrawableAmount = $amount / 2 + $amount;
+        $user = User::find(Auth::id());
+        $user->update(['investment_confirmed' => 0]);
         Investment::create([
             'amount' => $amount,
             'screenshot' => $imgTodb,
+            'name_of_sender' => auth()->user()->name,
             'user_id' => Auth::id(),
             'withdrawable_amount' => $withdrawableAmount,
+            'admin' => $request->admin
 
         ]);
-        return redirect('/dashboard/home')->with('success', 'Your proof of Investment of ' . $request->amount . ' was successfully submitted. Please wait for the admin to confirm your investment.');
+        $admin = User::where('username', $request->admin)->first();
+
+        return redirect('/dashboard/home')->with('success', 'Your proof of Investment of ' . number_format($request->amount) . ' was successfully submitted. Please wait for the admin to confirm your investment or call ' . $admin->phone . '.');
     }
 
     /**

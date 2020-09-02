@@ -10,7 +10,8 @@
                         @csrf
                         <div class="form-group">
                             <label for="account_name">Account Name</label>
-                            <input id="account_name" class="form-control" type="text" name="account_name">
+                            <input id="account_name" class="form-control @error('account_name') is-invalid @enderror"
+                                type="text" name="account_name" value="{{ old('account_name') }}">
                             @error('account_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -19,7 +20,8 @@
                         </div>
                         <div class="form-group">
                             <label for="account_number">Account Number</label>
-                            <input id="account_number" class="form-control" type="text" name="account_number">
+                            <input id="account_number" class="form-control @error('account_number') is-invalid @enderror"
+                                type="text" name="account_number" value="{{ old('account_number') }}">
                             @error('account_number')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -28,7 +30,8 @@
                         </div>
                         <div class="form-group">
                             <label for="bank_name">Bank Name</label>
-                            <input id="bank_name" class="form-control" type="text" name="bank_name">
+                            <input id="bank_name" value="{{ old('bank_name') }}"
+                                class="form-control @error('bank_name') is-invalid @enderror" type="text" name="bank_name">
                             @error('bank_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -37,7 +40,8 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input id="phone" class="form-control" type="text" name="phone">
+                            <input id="phone" {{ old('phone') }} class="form-control @error('phone') is-invalid @enderror"
+                                type="number" name="phone">
                             @error('phone')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

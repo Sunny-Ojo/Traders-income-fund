@@ -20,7 +20,7 @@
                                 </li>
                             </h5>
                             <h5>
-                                <li>Wait after 3 days to be able to place a withdrawal order on the investment. </li>
+                                <li>Wait after 5 days to be able to place a withdrawal order on the investment. </li>
                             </h5>
                             <h5>
                                 <li>Your Investment duration starts counting after the admin has confirmed your investment.
@@ -41,7 +41,7 @@
                             <h4>Account Name: {{ $admin->account_name }}</h4>
                             <h4>Account Number: {{ $admin->account_number }}</h4>
                             <h4>Bank Name: {{ $admin->bank_name }}</h4>
-                            <h4>Phone Number: <a href="tel://08134883991">08134883991</a></h4>
+                            <h4>Phone Number: <a href="tel://{{ $admin->phone }}">{{ $admin->phone }}</a></h4>
                             <hr>
                             <form action="{{ route('investment.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
@@ -60,13 +60,8 @@
                                     <li class="text-danger">{{ $message }}</li>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <input value="{{ old('name_of_sender') }}" type="text" name="name_of_sender" id=""
-                                        class="form-control" placeholder="Your Name on the account">
-                                    @error('name_of_sender')
-                                    <li class="text-danger">{{ $message }}</li>
-                                    @enderror
-                                </div>
+                                <input type="hidden" name="admin" value="{{ $admin->username }}">
+
                                 <div class="form-group">
                                     <input type="submit" value="Upload Proof of Payment" class="btn btn-primary btn-sm">
                                 </div>

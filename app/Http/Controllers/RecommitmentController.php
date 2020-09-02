@@ -41,7 +41,7 @@ class RecommitmentController extends Controller
     public function store(Request $request)
     {
 
-        if (auth()->user()->invested_on == 3) {
+        if (auth()->user()->invested_on == 5) {
             //creating a pending withdrawal data
             $getUser = User::findOrFail(Auth::id());
             $withdrawal_amount = $getUser->withdrawable_amount;
@@ -55,16 +55,10 @@ class RecommitmentController extends Controller
                 'account_name' => $getUser->account_name,
                 'account_number' => $getUser->account_number,
                 'bank_name' => $getUser->bank_name,
-                'phone' => $getUser->phone
-            ]);
-            //saving it in a session;
-            // $store  = Session::put('pendingWithdrawal', $newWithdrawal);
-            // if ($store) {
-            //     return 'hi';
-            // } else {
-            //     return 'no';
-            // }
+                'phone' => $getUser->phone,
+                'admin' => $request->admin,
 
+            ]);
             //validating recommitment forms
             $this->validate($request, [
                 'amount' => 'required|min:5000|integer',
@@ -82,11 +76,16 @@ class RecommitmentController extends Controller
             }
             //calculating withdrawable amount for users recommitment
             $withdrawableAmount = $amount / 2 + $amount;
+            $user = User::findOrFail(Auth::id());
+            $user->update(['investment_confirmed' => 0]);
+
             //creating the users recommitment
             Recommitment::create([
                 'amount' => $amount,
                 'screenshot' => $imgTodb,
                 'user_id' => Auth::id(),
+                'name_of_sender' => auth()->user()->name,
+                'admin' => $request->admin,
                 'withdrawable_amount' => $withdrawableAmount,
             ]);
             //updating the users investment details
@@ -95,8 +94,8 @@ class RecommitmentController extends Controller
             //get$getUsers invested_on data will start counting once admin approves the proof of recommitment
             $getUser->invested_on = null;
             $getUser->save();
-
-            return redirect('/dashboard/home')->with('success', 'Your proof of recommitment of ' . $request->amount . ' was successfully submitted. Please wait for the admin to confirm your recommitment and withdrawal order.');
+            $admin = User::where('username', $request->admin)->first();
+            return redirect('/dashboard/home')->with('success', 'Your proof of recommitment of ' . number_format($request->amount) . ' was successfully submitted. Please wait for the admin to confirm your recommitment and withdrawal order or you can call ' . $admin->phone . '');
         } else {
             return redirect()->back()->with('error', 'You can not withdraw at the moment');
         }

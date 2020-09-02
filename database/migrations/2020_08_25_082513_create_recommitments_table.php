@@ -19,6 +19,7 @@ class CreateRecommitmentsTable extends Migration
             $table->string('user_id');
             $table->string('name_of_sender');
             $table->string('screenshot');
+            $table->string('admin');
             $table->boolean('confirmed')->default(0);
             $table->string('withdrawable_amount');
             $table->timestamps();

@@ -21,13 +21,14 @@
     <meta property="og:site_name" content="">
     <meta property="og:description" content="">
 
+
     <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="">
     <meta name="twitter:title" content="">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <!-- Favicons -->
     <link href="{{ asset('assets/img/favicon.html') }}" rel="icon">
     <link href="{{ asset('assets/img/apple-touch-icon.html') }}" rel="apple-touch-icon">
@@ -43,12 +44,7 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
-    <!-- =======================================================
-  * Template Name: Bell - v2.1.0
-  * Template URL: https://bootstrapmade.com/bell-free-bootstrap-4-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body>
@@ -59,7 +55,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <a class="hero-brand" href="/" title="Home"><img alt="Bell Logo"
-                            src="{{ asset('assets/img/logo.png') }}"></a>
+                            src="{{ asset('assets/img/logo.png') }}" width="100%"></a>
                 </div>
             </div>
 
@@ -118,7 +114,7 @@
                                 {{-- <a class="dropdown-item text-dark"
                                     href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                         document.getElementById('logout-form').submit();">
+                                                                                                                                                                 document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a> --}}
 
@@ -203,7 +199,7 @@
                     </div>
 
                     <div class="col-lg-3 col-sm-12 text-lg-right text-center">
-                        <a class="btn btn-ghost" href="../t.me/joinchat/TIA951dhkd9nL8ucG4tJng.html">Join group</a>
+                        <a class="btn btn-ghost" href="https://t.me/joinchat/TIA951dhkd9nL8ucG4tJng.com">Join group</a>
                     </div>
                 </div>
             </div>
@@ -352,36 +348,36 @@
 
                     <div class="col-lg-5 col-md-8">
                         <div class="form">
-                            <form action="#" method="post" role="form" class="php-email-form">
+                            <form action="{{ route('sendContactMessage') }}" method="post" role="form">
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Your Name" data-rule="minlen:4"
-                                        data-msg="Please enter at least 4 chars" />
-                                    <div class="validate"></div>
-                                </div>
+                                    <input type="text" value="{{ old('name') }}" name="name" class="form-control"
+                                        id="name" placeholder="Your Name" />
+                                    @error('name')
+                                    <li class="text-danger">{{ $message }}</li>
+                                    @enderror </div>
+                                @csrf
                                 <div class="form-group">
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Your Email" data-rule="email"
-                                        data-msg="Please enter a valid email" />
-                                    <div class="validate"></div>
-                                </div>
+                                    <input type="email" class="form-control" name="email" id="email" {{ old('email') }}
+                                        placeholder="Your Email" />
+                                    @error('email')
+                                    <li class="text-danger">{{ $message }}</li>
+                                    @enderror </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="subject" id="subject"
-                                        placeholder="Subject" data-rule="minlen:4"
-                                        data-msg="Please enter at least 8 chars of subject" />
-                                    <div class="validate"></div>
-                                </div>
+                                    <input type="text" class="form-control" name="subject" value="{{ old('subject') }}"
+                                        id="subject" placeholder="Subject" />
+                                    @error('subject')
+                                    <li class="text-danger">{{ $message }}</li>
+                                    @enderror </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" name="message" rows="5" data-rule="required"
-                                        data-msg="Please write something for us" placeholder="Message"></textarea>
-                                    <div class="validate"></div>
+                                    <textarea class="form-control" name="message" rows="5"
+                                        placeholder="Message">{{ old('message') }}</textarea>
+                                    @error('message')
+                                    <li class="text-danger">{{ $message }}</li>
+                                    @enderror
                                 </div>
-                                <div class="mb-3">
-                                    <div class="loading">Loading</div>
-                                    <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
-                                </div>
-                                <div class="text-center"><button type="submit">Send Message</button></div>
+
+                                <div class="text-center"><button class="btn btn-success" type="submit">Send
+                                        Message</button></div>
                             </form>
                         </div>
                     </div>
@@ -431,6 +427,7 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 </body>
 

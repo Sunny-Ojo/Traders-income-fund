@@ -19,6 +19,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'username', 'email', 'upline', 'phone', 'account_name', 'account_number', 'bank_name', 'current_investment', 'total_amount_invested', 'total_amount_withdrawn', 'bonus',  'password',
     ];
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 
     /**
      * The attributes that should be hidden for arrays.

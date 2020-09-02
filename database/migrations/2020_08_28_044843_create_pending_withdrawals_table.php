@@ -23,6 +23,7 @@ class CreatePendingWithdrawalsTable extends Migration
             $table->string('account_name');
             $table->string('account_number');
             $table->string('bank_name');
+            $table->string('admin');
             $table->string('phone');
             $table->timestamps();
         });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaymentProofsTable extends Migration
+class AddReadNotificationToNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreatePaymentProofsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment_proofs', function (Blueprint $table) {
-            $table->id();
-            $table->string('image');
-            $table->string('user_id')->unique();
-            $table->string('admin');
-            $table->timestamps();
+        Schema::table('notifications', function (Blueprint $table) {
+            //
+            $table->boolean('read');
         });
     }
 
@@ -29,6 +26,8 @@ class CreatePaymentProofsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_proofs');
+        Schema::table('notifications', function (Blueprint $table) {
+            //
+        });
     }
 }

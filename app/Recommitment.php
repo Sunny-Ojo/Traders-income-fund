@@ -8,6 +8,6 @@ class Recommitment extends Model
 {
     //
     protected $fillable  = [
-        'amount', 'user_id', 'name_of_sender', 'screenshot', 'confirmed', 'withdrawable_amount',
+        'amount', 'user_id', 'screenshot', 'confirmed', 'withdrawable_amount', 'name_of_sender', 'admin'
     ];
 }

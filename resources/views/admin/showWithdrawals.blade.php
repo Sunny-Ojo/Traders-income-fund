@@ -13,8 +13,6 @@
                         <li class="list-group-item"><b>Amount to Withdraw:</b>
                             {{ number_format($withdrawal->withdrawable_amount) }}</li>
                     </h4>
-
-
                     <h4>
                         <li class="list-group-item"><b>Account Number:</b> {{ $withdrawal->account_number }}</li>
                     </h4>
@@ -51,6 +49,5 @@
             </div>
         </div>
     </div>
-
-
 @endsection
+</div>

@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'phone' => ['required'],
             'referral_id' => ['nullable'],
             'account_name' => ['required'],
-            'account_number' => ['required', 'unique:users'],
+            'account_number' => ['required', 'string'],
             'bank_name' => ['required',],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -93,12 +93,13 @@ class RegisterController extends Controller
         } else {
             $upline = 'N\A';
         }
+
         return  User::create([
             'name' => $data['name'],
             'username' => str_replace(' ', '', $data['username']),
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'upline' => $upline,
+            'upline' => $upline ?? $data['referral_id'] ?? 'N/A',
             'account_name' => $data['account_name'],
             'account_number' => $data['account_number'],
             'bank_name' => $data['bank_name'],

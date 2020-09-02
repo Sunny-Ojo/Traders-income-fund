@@ -6,10 +6,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-
+Route::get('logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
 Auth::routes();
-Route::post('/veriy/activate-account', 'PagesController@verifyPayment')->name('verifyUser');
 
+Route::group(['prefix' => 'traders-Income'], function () {
+    Route::get('/contact-us', 'PagesController@contact')->name('contact');
+    Route::get('/about-us', 'PagesController@about')->name('about');
+    Route::get('/support', 'PagesController@support')->name('support');
+    Route::post('contact-message', 'PagesController@sendContactMessage')->name('sendContactMessage');
+});
+
+Route::post('/veriy/activate-account', 'PagesController@verifyPayment')->name('verifyUser');
+Route::get('/my-notifications', 'PagesController@notifications')->name('notifications');
 //admin Routes
 Route::group(['prefix' => 'admin', 'middleware' =>
 'admin'], function () {
@@ -20,8 +31,8 @@ Route::group(['prefix' => 'admin', 'middleware' =>
     //admin referrals
     Route::get('/downlines', 'AdminController@downlines')->name('adminDownlines');
     //route to add admin bank details
-    Route::get('/admin/create-bank-account', 'AdminController@createBankDetails')->name('addAdminBankDetails');
-    Route::post('/admin/store-bank-account', 'AdminController@storeBankDetails')->name('storeAdminBankDetails');
+    // Route::get('/admin/create-bank-account', 'AdminController@createBankDetails')->name('addAdminBankDetails');
+    Route::post('/make-admin/{id}', 'AdminController@makeAdmin')->name('makeAdmin');
 
     //route to show all first investments of users
     Route::get('/users/first-investments', 'AdminController@userInvestments')->name('userInvestments');
@@ -33,6 +44,10 @@ Route::group(['prefix' => 'admin', 'middleware' =>
     Route::get('/admin-bank-details', 'AdminController@showBankDetails')->name('adminBankDetails');
     //route to show users single investments
     Route::get('/users/investments/show/{id}', 'AdminController@showInvestment')->name('usersInvestment.show');
+    //route to change admin password
+    Route::get('/change-password', 'AdminController@changePassword')->name('changePassword');
+    //route to store admin password
+    Route::post('/change-password/store', 'AdminController@storePassword')->name('storePassword');
     //route to show users single recommitments
     Route::get('/users/recommitments/show/{id}', 'AdminController@showRecommitment')->name('usersRecommitment.show');
     //route to approve investments
@@ -52,7 +67,7 @@ Route::group(['prefix' => 'admin', 'middleware' =>
     Route::get('/users/withdrawals/{id}', 'AdminController@showWithdrawals')->name('showUserWithdrawals');
     //route to update users withdrawal status
     Route::post('/users/withdrawals/update/{id}', 'AdminController@updateUsersWithdrawalStatus')->name('updateUsersWithdrawalStatus');
-    // Route::post('/users/recommitment', 'AdminController@verifyRecommitment')->name('verifyRecommitment');
+    Route::post('/users/activate/{id}', 'AdminController@verifyUser')->name('verifyUser');
 });
 
 
@@ -74,7 +89,3 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'verifiedUsers'], functio
     Route::get('/testimony', 'PagesController@testimony')->name('testimony');
     Route::get('/withdraw', 'PagesController@withdraw')->name('withdraw');
 });
-Route::get('logout', function () {
-    Auth::logout();
-    return redirect('/');
-})->name('logout');

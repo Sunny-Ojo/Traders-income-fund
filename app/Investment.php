@@ -12,6 +12,6 @@ class Investment extends Model
         return $this->belongsTo(App\User::class);
     }
     protected $fillable = [
-        'amount', 'user_id', 'name_of_sender', 'screenshot', 'confirmed', 'withdrawable_amount',
+        'amount', 'user_id', 'name_of_sender', 'screenshot', 'confirmed', 'withdrawable_amount', 'admin'
     ];
 }

@@ -1,22 +1,11 @@
 @extends('layouts.app')
-
 @section('content')
 @section('title', 'Register with us')
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <div class="card-header bg-warning text-center text-white">{{ __('Traders Income Fund') }}</div>
-
+                    <div class="card-header text-center">{{ __('Register With Us') }}</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
@@ -111,7 +100,7 @@
                                 @enderror
                             </div>
                             <div class="form-group ">
-                                <label for="bank_name" class="">{{ __('Bank Name') }}</label>
+                                <label for="bank_name" class="">{{ __('Bank Name') }} <b>(Correct Name of Bank)</b></label>
 
                                 <input id="bank_name" type="text"
                                     class="form-control @error('bank_name') is-invalid @enderror" name="bank_name"

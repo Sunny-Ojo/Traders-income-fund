@@ -18,4 +18,11 @@
                 <li class="list-group-item"><b>Upline:</b> {{ $profile->upline }}</li>
                 <li class="list-group-item"><b>Date Joined:</b> {{ date('d-m-Y', strtotime($profile->created_at)) }}</li>
             </div>
-        @endsection
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+@endsection

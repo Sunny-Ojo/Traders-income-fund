@@ -14,28 +14,44 @@ class AdminAccountSeeder extends Seeder
     {
         //
         Admin::create([
-            'account_name' => 'Sunny Ojo',
-            'account_number' => '0224220580',
-            'bank_name' => 'Guaranty Trust Bank',
-            'phone' => '0812823216878',
-            'created_by' => 'admin'
+            'account_name' => 'Emmanuel Agu',
+            'account_number' => '0217303144',
+            'bank_name' => 'Gt Bank',
+            'phone' => '09038472207',
+            'created_by' => 'Seeded'
 
         ]);
         Admin::create([
-            'account_name' => 'Chima Developer',
-            'account_number' => '0058022422',
+            'account_name' => 'Emmanuel Destiny Ekechukwu',
+            'account_number' => '0024361229',
             'bank_name' => 'Zenith Bank',
-            'phone' => '08128232778',
-            'created_by' => 'admin'
+            'phone' => '08084593359',
+            'created_by' => 'Seeded'
 
 
         ]);
         Admin::create([
-            'account_name' => 'Admin Ojo',
-            'account_number' => '2058022420',
-            'bank_name' => 'Access Bank',
-            'phone' => '08128233878',
-            'created_by' => 'admin'
+            'account_name' => 'Okekwe Rita Chinyere',
+            'account_number' => '5071013406',
+            'bank_name' => 'Ecobank',
+            'phone' => '08038862911',
+            'created_by' => 'Seeded'
+
+        ]);
+        Admin::create([
+            'account_name' => 'Dara Amasco',
+            'account_number' => '3107285938',
+            'bank_name' => 'First Bank',
+            'phone' => '08038085117',
+            'created_by' => 'Seeded'
+
+        ]);
+        Admin::create([
+            'account_name' => 'Maria Thomas',
+            'account_number' => '2104043970',
+            'bank_name' => 'UBA',
+            'phone' => '09060031829',
+            'created_by' => 'Seeded'
 
         ]);
     }

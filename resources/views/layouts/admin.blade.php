@@ -27,13 +27,14 @@
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-color fixed-top">
                 <a class="navbar-brand text-white" href="{{ url('/') }}">TRADERS Income</a>
+                <a class="navbar-brand float-right text-white text-small" href="#"> <i class="fa fa-sign-out-alt mr-2"
+                        aria-hidden="true"></i>{{ Auth::user()->name }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
-
                 </div>
             </nav>
         </div>
@@ -60,8 +61,8 @@
                             <li class="nav-item ">
                                 <a class="nav-link" href="{{ route('userActivations') }}"><i
                                         class="fa fa-fw fa-user"></i>Pending
-                                    Activations @if ($payment_proof > 0)
-                                        <span class="bg-danger p-1 text-white">{{ $payment_proof }}</span>
+                                    Activations @if ($userPaymentProof > 0)
+                                        <span class="bg-danger p-1 text-white">{{ $userPaymentProof }}</span>
                                     @endif</a>
                             </li>
                             <li class="nav-item ">
@@ -74,12 +75,7 @@
                             </li>
 
 
-                            <li class="nav-item ">
-                                <a class="nav-link" href="{{ route('userWithdrawals') }}"><i
-                                        class="fa fa-fw fa-rocket"></i>User Withdrawals @if ($userWithdrawals > 0)
-                                        <span class="bg-danger p-1 text-white">{{ $userWithdrawals }}</span>
-                                    @endif</a>
-                            </li>
+
                             <li class="nav-item ">
                                 <a class="nav-link" href="{{ route('userRecommitments') }}"><i
                                         class="fa fa-fw fa-user"></i>User
@@ -88,6 +84,12 @@
                                         <span class="bg-danger p-1 text-white">{{ $unconfirmedRecommitment }}</span>
                                     @endif
                                 </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ route('userWithdrawals') }}"><i
+                                        class="fa fa-fw fa-rocket"></i>User Withdrawals @if ($userWithdrawals > 0)
+                                        <span class="bg-danger p-1 text-white">{{ $userWithdrawals }}</span>
+                                    @endif</a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="{{ route('users') }}"><i
@@ -101,14 +103,37 @@
                                 <div id="submenu-3" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('adminBankDetails') }}">Admin Bank
-                                                Details
+                                            <a class="nav-link" href="{{ route('adminBankDetails') }}">Admin
+                                                Accounts
                                             </a>
                                         </li>
-                                        <li class="nav-item">
+                                        {{-- <li class="nav-item">
                                             <a class="nav-link" href="{{ route('addAdminBankDetails') }}">Add a Bank
                                                 Account
                                             </a>
+                                        </li> --}}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('changePassword') }}">Change Password
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-4" aria-controls="submenu-4"><i
+                                        class="fa fa-arrow-up"></i>Site
+                                    Pages</a>
+                                <div id="submenu-4" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('about') }}">About</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('support') }}">Support</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -138,7 +163,8 @@
                                 </a>
                             </li> --}}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}"><i class="fas fa-fw fa-file"></i>
+                                <a class="nav-link" onclick="return confirm('You will be logged out!')"
+                                    href="{{ route('logout') }}"><i class="fas fa-fw fa-file"></i>
                                     Logout </a>
                             </li>
 
@@ -161,50 +187,39 @@
                                 <hr>
                                 <p class="pageheader-text"></p>
                                 @yield('ref_link')
-                                {{-- <div class="page-breadcrumb">
-                                    <nav aria-label="breadcrumb">
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item">Referral</li>
-                                            <li class="breadcrumb-item active" aria-current="page">
-                                                {{ auth()->user()->referral_link() }}</li>
-
-                                        </ol>
-                                    </nav>
-                                    <hr>
-                                </div> --}}
-                                {{-- @endif
-                                --}}
                                 @include('layouts.messages')
 
                             </div>
                         </div>
                     </div>
                     <!-- ============================================================== -->
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                             <div class="alert-wrap2 shadow-inner wrap-alert-b">
                                 <div class="alert-title">
                                     <h2></h2>
                                 </div>
-                                <div style="text-align:center"> </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     @yield('content')
                     <div class="footer bg-success text-white ">
-                        <div class="container-fluid">
+                        {{-- <div class="container-fluid">
+                            --}}
                             <div class="row">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    Copyright © 2020 Vegas. All rights reserved. </div>
+                                    Copyright &copy; Traders Income. All Rights Reserved. </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div class="text-md-right footer-links d-none d-sm-block">
-                                        <a href="javascript: void(0);">About</a>
-                                        <a href="javascript: void(0);">Support</a>
-                                        <a href="javascript: void(0);">Contact Us</a>
+                                        <a href="{{ route('about') }}">About</a>
+                                        <a href="{{ route('support') }}">Support</a>
+                                        <a href="{{ route('contact') }}">Contact Us</a>
+
                                     </div>
                                 </div>
+
                             </div>
-                        </div>
+                            {{-- </div> --}}
                     </div>
                 </div>
             </div>

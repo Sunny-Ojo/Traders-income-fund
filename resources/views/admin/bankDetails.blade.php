@@ -22,7 +22,11 @@
                     </div>
                 </div>
             @endforeach
+            {{ $bankDetails->links() }}
         @endif
+    </div>
+    </div>
+
     </div>
 
 @endsection
