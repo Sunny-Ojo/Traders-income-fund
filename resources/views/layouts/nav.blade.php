@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -67,18 +68,18 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
                                     data-target="#submenu-2" aria-controls="submenu-2"><i
-                                        class="fa fa-fw fa-rocket"></i>Investment</a>
+                                        class="fa fa-fw fa-rocket"></i>Trades</a>
                                 <div id="submenu-2" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
 
                                         @if (!auth()->user()->times_invested > 0)
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('investment.create') }}">Make an
-                                                    Investment</a>
+                                                <a class="nav-link" href="{{ route('investment.create') }}">Make a
+                                                    Trade</a>
                                             </li>
                                         @endif
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('investments') }}">Investment
+                                            <a class="nav-link" href="{{ route('investments') }}">Trading
                                                 History</a>
                                         </li>
                                         <li class="nav-item">

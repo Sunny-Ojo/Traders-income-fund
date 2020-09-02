@@ -6,24 +6,24 @@
             <div class="col-md-12 col-lg-6">
                 <div class="card">
                     <div class="card-header ">
-                        <h4 class="text-center">Investment Guides</h4>
+                        <h4 class="text-center">Trading Guides</h4>
                     </div>
                     <div class="card-body">
-                        <h4>Please take note of this <ins class="text-danger ">Instructions</ins> before making an
-                            investment</h4>
+                        <h4>Please take note of this <ins class="text-danger ">Instructions</ins> before making a Trade
+                        </h4>
                         <ol>
                             <h5>
-                                <li>Investments Must not be less than <b>5,000</b>.</li>
+                                <li>Trades Must not be less than <b>5,000</b>.</li>
                             </h5>
                             <h5>
-                                <li>After making an investment, Upload a proof of payment for the admin to confirm it.</b>.
+                                <li>After making a Trade, Upload a proof of payment for the admin to confirm it.</b>.
                                 </li>
                             </h5>
                             <h5>
-                                <li>Wait after 5 days to be able to place a withdrawal order on the investment. </li>
+                                <li>Wait after 5 days to be able to place a withdrawal order on the Trade. </li>
                             </h5>
                             <h5>
-                                <li>Your Investment duration starts counting after the admin has confirmed your investment.
+                                <li>Your Trade duration starts counting after the admin has confirmed your Trade.
                                 </li>
                             </h5>
                         </ol>

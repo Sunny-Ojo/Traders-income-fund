@@ -1,7 +1,7 @@
 @extends('layouts.nav')
 @section('title', 'Investments')
 @section('content')
-    <h5 class="card-header bg-1">Investment Orders</h5>
+    <h5 class="card-header bg-1">Trade Orders</h5>
     @if (!empty($investment))
         <div class="row">
             <div class="col-md-4 col-lg-4">
@@ -32,7 +32,7 @@
             </div>
         @else
             <div class="jumbotron text-center">
-                <h4 class="text-center ">No Investments <i class="fa fa-history" aria-hidden="true"></i></h4>
+                <h4 class="text-center ">No Trade <i class="fa fa-history" aria-hidden="true"></i></h4>
             </div>
     @endif
     @if (count($recommitments) > 0)

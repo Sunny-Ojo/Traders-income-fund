@@ -68,7 +68,7 @@
                             <li class="nav-item ">
                                 <a class="nav-link" href="{{ route('userInvestments') }}"><i
                                         class="fa fa-fw fa-user"></i>Users First-
-                                    Investments @if ($unconfirmed_investments > 0)
+                                    Trades @if ($unconfirmed_investments > 0)
                                         <span class="bg-danger p-1 text-white">{{ $unconfirmed_investments }}</span>
                                     @endif
                                 </a>

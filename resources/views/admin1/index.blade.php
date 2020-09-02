@@ -59,7 +59,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1"><a
                                     href="{{ route('userInvestments') }}"> Pending User
-                                    Investments</a>
+                                    Trades</a>
 
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $unconfirmed_investments }}</div>
@@ -149,7 +149,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Number Of Investments
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Number Of Trades
 
                             </div>
                             <div class="row no-gutters align-items-center">

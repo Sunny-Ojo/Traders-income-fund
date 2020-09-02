@@ -78,7 +78,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="card border-3 border-top border-top-black">
                         <div class="card-body bg-1">
-                            <h5 class="text-white">Investment Order</h5>
+                            <h5 class="text-white">Trade Order</h5>
                             <div class="metric-value d-inline-block">
                                 <h1 class="mb-1 text-white" style="font-size: 18px">
                                     &#8358;{{ number_format(auth()->user()->current_investment) }}
@@ -149,7 +149,7 @@
                 <!-- ============================================================== -->
                 <div class="col-md-12 col-lg-6">
                     <div class="card">
-                        <h5 class="card-header bg-1">Investment Order </h5>
+                        <h5 class="card-header bg-1">Trade Orders </h5>
                         <div class="card-body p-2">
                             @foreach ($recommitments as $investment)
                                 <div class="col-md-12 col-lg-12">
@@ -197,7 +197,8 @@
                                 <a href="{{ route('investments') }}" class="btn btn-sm btn-primary ml-3 mt-2">Investments
                                     History</a>
                             @else
-                                <h4 class="text-center text-danger">No Investments</h4>
+                                <h4 class="text-center text-danger">No Trade history <i class="fa fa-history"
+                                        aria-hidden="true"></i></h4>
                             @endif
                         </div>
                     </div>
@@ -255,7 +256,7 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td class="td-font">Total amount invested</td>
+                                            <td class="td-font">Total amount Traded</td>
                                             <td>&#8358;{{ number_format(auth()->user()->total_amount_invested) }}</td>
                                         </tr>
                                         <tr>
