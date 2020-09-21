@@ -25,7 +25,7 @@
             <div class="col-md-12 col-lg-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Make a 1,000 payment to this bank account to activate your account</h4>
+                        <h4>Make a &#8358;1,000 payment to this bank account to activate your account</h4>
                     </div>
                     <div class="card-body">
                         @foreach ($adminAccount as $admin)
@@ -123,26 +123,7 @@
                 </div>
             </div>
 
-            {{-- <div class="row">
-                <!-- Rc and PH btn -->
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="card border-3 border-bottom border-top-main">
-                        <a href="#" data-toggle="modal" data-target="#rc">
-                            <div class="card-body bg-2 text-center card-body-2">
-                                Recommitment
-                            </div>
-                        </a> </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="card border-3 border-bottom border-top-main">
-                        <a href="" onclick="return confirm(\'Are you sure you want to activate this user?\')"> </a>
 
-                        <div class="card-body bg-2 text-center card-body-2 pointer">
-                            withdrawal placed
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
             <div class="row">
 
                 <!-- recent orders  -->
@@ -284,7 +265,8 @@
     </div>
     {{-- </div>
     </div>
-    </div>
-    </div> --}}
-    </div>
+    {{-- </div> --}}
+                </div>
+                </div>
+                </div>
 @endsection

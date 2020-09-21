@@ -23,11 +23,13 @@ class PagesController extends Controller
     {
         $this->middleware('auth', ['except' => ['sendContactMessage']]);
     }
+    //users profile method
     public function profile()
     {
         $profile = User::find(Auth::id());
         return view('users.profile')->with('profile', $profile);
     }
+    // users investment method
     public function donations()
     {
         $investments = Investment::where('user_id', Auth::id())->first();
@@ -66,6 +68,7 @@ class PagesController extends Controller
 
     public function verifyPayment(Request $request)
     {
+        // validating users activation proof image and saving
         $this->validate($request, [
             'proof' => "required|mimes:png,jpg,jpeg|image"
         ]);
@@ -92,6 +95,7 @@ class PagesController extends Controller
         return redirect('/dashboard/home')->with('success', 'Your proof of payment has successfully been submitted. Please kindly wait while we review your proof of payment');
     }
 
+    //notifications for users
     public function notifications()
     {
         $notification = Notification::where('user_id', Auth::id())->update(['read' => 0]);
@@ -126,6 +130,7 @@ class PagesController extends Controller
     public function sendContactMessage(ContactRequest $request)
     {
         $data = $request->only(['name', 'email', 'subject', 'message']);
-        return Mail::to('njokusunnyojo@gmail.com')->send(new ContactMessage($data));
+        Mail::to('njokusunnyojo@gmail.com')->send(new ContactMessage($data));
+        return redirect('/dashboard/home')->with('success', 'Your message has been sent. Thank you for trading with us.');
     }
 }

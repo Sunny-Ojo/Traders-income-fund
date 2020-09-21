@@ -176,6 +176,7 @@
                                     </div>
                                 @endif
                                 @yield('content')
+
                                 <div class="footer bg-success text-white ">
                                     {{-- <div class="container-fluid">
                                         --}}
@@ -200,6 +201,7 @@
                 </div>
             </div>
         </div>
+
         <script src="{{ asset('dashboardAssets/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
         <!-- bootstap bundle js -->
         <script src="{{ asset('dashboardAssets/vendor/bootstrap/js/bootstrap.bundle.js') }}">

@@ -25,12 +25,6 @@ class InvestmentController extends Controller
      */
     public function index(Request $request)
     {
-        //
-        if (session()->has('amount')) {
-            dd($request->session()->get('amount'));
-        }
-        echo "text";
-        // return /?$request->session()->get('amount');
     }
 
     /**
@@ -73,7 +67,7 @@ class InvestmentController extends Controller
             $saveImage = $request->file('proof')->storeAs('public/proofs/investments', $imgTodb);
         }
         $withdrawableAmount = $amount / 2 + $amount;
-        $user = User::find(Auth::id());
+        $user = User::findOrFail(Auth::id());
         $user->update(['investment_confirmed' => 0]);
         Investment::create([
             'amount' => $amount,
@@ -85,55 +79,6 @@ class InvestmentController extends Controller
 
         ]);
         $admin = User::where('username', $request->admin)->first();
-
         return redirect('/dashboard/home')->with('success', 'Your proof of Investment of ' . number_format($request->amount) . ' was successfully submitted. Please wait for the admin to confirm your investment or call ' . $admin->phone . '.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-        dd($request->all());
-        // Note that your withdrawal will be available after three days . Thank you!
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

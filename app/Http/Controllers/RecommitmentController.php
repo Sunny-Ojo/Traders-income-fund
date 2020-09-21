@@ -17,21 +17,6 @@ class RecommitmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +26,7 @@ class RecommitmentController extends Controller
     public function store(Request $request)
     {
 
-        if (auth()->user()->invested_on == 5) {
+        if (Auth::user()->invested_on == 5) {
             //creating a pending withdrawal data
             $getUser = User::findOrFail(Auth::id());
             $withdrawal_amount = $getUser->withdrawable_amount;
@@ -94,56 +79,10 @@ class RecommitmentController extends Controller
             //get$getUsers invested_on data will start counting once admin approves the proof of recommitment
             $getUser->invested_on = null;
             $getUser->save();
-            $admin = User::where('username', $request->admin)->first();
+            $admin = User::where('username', $request->admin)->firstOrFail();
             return redirect('/dashboard/home')->with('success', 'Your proof of recommitment of ' . number_format($request->amount) . ' was successfully submitted. Please wait for the admin to confirm your recommitment and withdrawal order or you can call ' . $admin->phone . '');
         } else {
             return redirect()->back()->with('error', 'You can not withdraw at the moment');
         }
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

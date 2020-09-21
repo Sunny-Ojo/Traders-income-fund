@@ -47,6 +47,7 @@ class AdminController extends Controller
         $user = User::where('id', $id)->first();
         $user->update(['isAdmin' => 1]);
         Mail::to('njokusunnyojo@gmail.com')->send(new MadeAdmin($user));
+        // i used my email here cos i used dummy emails as admins otherwise it wouldve been the users email that had just been made an admin
         return redirect('/admin')->with('success', 'You have made "' . $user->name . '" an Admin of Traders Fund');
     }
 
@@ -210,17 +211,19 @@ class AdminController extends Controller
 
         //finding the datas
         $findInvestment  = Recommitment::where('id', $id)->latest()->first();
-        $findUser  =  User::where('id', $user)->first();
+        $findUser  =  User::where('id', $user)->firstOrFail();
         //updating the datas with creating a withdrawal order for
         $findInvestment->confirmed = 1;
-        $findUser->invested_on = now()->diffInDays();
-        $findUser->times_invested += 1;
-        $findUser->current_investment = $findInvestment->amount;
-        $findUser->investment_confirmed = 1;
-        $findUser->lastAdminPaidTo = auth()->user()->username;
-        $findUser->total_amount_invested += $findInvestment->amount;
-        $findUser->withdrawable_amount = $findInvestment->withdrawable_amount;
-        $findUser->save();
+        $findUser->update([
+
+            'invested_on' => now()->diffInDays(),
+            'times_invested' => +1,
+            'current_investment' => $findInvestment->amount,
+            'investment_confirmed' => 1,
+            'lastAdminPaidTo' => Auth::user()->username,
+            'total_amount_invested' => +$findInvestment->amount,
+            'withdrawable_amount' => $findInvestment->withdrawable_amount,
+        ]);
         $findInvestment->save();
         Notification::create([
             'user_id' => $user,
@@ -248,7 +251,7 @@ class AdminController extends Controller
 
     public function verifyUser($id)
     {
-        $user  = User::where('id', $id)->first();
+        $user  = User::where('id', $id)->firstOrFail();
         if ($user->awaiting_approval == 'awaiting' || $user->awaiting_approval == 'declined') {
             $user->awaiting_approval = 'verified';
             $user->save();
